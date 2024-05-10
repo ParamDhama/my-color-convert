@@ -110,7 +110,7 @@ const Convertor = () => {
         setrgb(`rgb(${r || "00"},${g || "00"},${b || "00"})`);
         let sum = ((r || 0) + (g || 0) + (b || 0)) / (255 * 3)
         sum > 0.5 ? setBin(1) : setBin(0);
-        rth?setBgHex(l):setBgHex(`rgb(${r || "00"},${g || "00"},${b || "00"})`);
+        rth ? setBgHex(l) : setBgHex(`rgb(${r || "00"},${g || "00"},${b || "00"})`);
     }
     function hexToRgb() {
         let d_hex;
@@ -162,10 +162,10 @@ const Convertor = () => {
 
     function clipboard() {
         let x = bgHex;
-        setBgHex("Copied") 
+        setBgHex("Copied")
         navigator.clipboard.writeText(x);
         setTimeout(() => {
-            setBgHex(x) ;
+            setBgHex(x);
             console.log(x);
         }, 500);
     }
@@ -174,9 +174,9 @@ const Convertor = () => {
         <div>
             <div className='bg-img h-screen w-screen flex justify-center items-center'>
                 <div className='backdrop-blur-lg h-[90%] w-[90%] bg-slate-500/50 shadow-[5px_15px_16px_rgba(0,0,0,0.5),-5px_-15px_20px_rgba(255,255,255,.6)] rounded-lg flex flex-col justify-around items-center'>
-                    <div className='absolute h-full w-full text-white' style={{pointerEvents:"none"}}>
+                    <div className='absolute h-full w-full text-white' style={{ pointerEvents: "none" }}>
                         <div className="flex justify-center items-center h-2/4 text-3xl">
-                            <div className='btn-cv h-20 w-20 rounded-full flex items-center justify-center' style={{pointerEvents:"all"}} onClick={() => {
+                            <div className='btn-cv h-20 w-20 rounded-full flex items-center justify-center' style={{ pointerEvents: "all" }} onClick={() => {
                                 const hasSupport = () => ('EyeDropper' in window);
                                 if (hasSupport) {
                                     const eyeDropper = new window.EyeDropper();
@@ -202,10 +202,12 @@ const Convertor = () => {
                         </div>
                     </div>
                     <div>
-                        <button className={rth ? 'btn-ch-focus' : 'btn-ch'} onClick={() => {setRTH(1)
+                        <button className={rth ? 'btn-ch-focus' : 'btn-ch'} onClick={() => {
+                            setRTH(1)
                             setBgHex(hex);
                         }}>rgb to Hex</button>
-                        <button className={rth ? 'btn-ch' : 'btn-ch-focus'} onClick={() => {setRTH(0)
+                        <button className={rth ? 'btn-ch' : 'btn-ch-focus'} onClick={() => {
+                            setRTH(0)
                             setBgHex(rgb);
                         }}>Hex to rgb</button>
                     </div>
@@ -238,7 +240,7 @@ const Convertor = () => {
                     <div className='w-72 h-72 bg-slate-200/10 flex justify-center items-center rounded-3xl backdrop-blur-lg'>
                         <button onClick={clipboard}>
                             <div className="w-60 h-60 rounded-3xl flex items-center justify-center text-purple-700 text-3xl shadow-inner" style={{ backgroundColor: bgHex, color: bin == 1 ? "#7e22ce" : "#ffffff", border: bin == 1 ? "1px solid #7e22ce" : " 1px solid#ffffff" }}>
-                                {bgHex }
+                                {bgHex}
 
                             </div>
                         </button>
@@ -246,25 +248,6 @@ const Convertor = () => {
 
                 </div>
             </div>
-            <div>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-
-            <div className='flex justify-center '>
-                {colors.map((color, index) => (
-                    
-                    <div
-                        key={index}
-                        style={{
-                            backgroundColor: color,
-                            width: '50px',
-                            height: '50px',
-                            margin: '5px',
-                            border: '1px solid #000',
-                        }}
-                    />
-                ))}
-            </div>
-        </div>
         </div>
     )
 }
